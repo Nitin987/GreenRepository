@@ -18,9 +18,9 @@ import lombok.Data;
 public class Artifact {
 	@Id
 	private ObjectId id;
-	@TextIndexed(weight=3)
+
 	private String articleTitle;
-	@TextIndexed(weight=5)
+
 	@Field("journalTitle")
 	private String journalTitle;
 	
@@ -37,7 +37,6 @@ public class Artifact {
 	
 	@Field("pii")
 	private String pii;
-	@TextIndexed(weight=4)
 	@Field("doi")
 	private String doi;
 	
@@ -46,7 +45,6 @@ public class Artifact {
 	
 	@Field("issue")
 	private String issue;
-	@TextIndexed(weight=2)
 	@Field("first-page")
 	private String firstPage;
 	

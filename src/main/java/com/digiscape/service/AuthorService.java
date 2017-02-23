@@ -33,7 +33,7 @@ public class AuthorService {
 	public List<Author> getFullTextOnAuthor(String search){
 		TextCriteria criteria=TextCriteria.forDefaultLanguage().matchingPhrase(search);
 		
-		return author.findTop5ByScore(criteria);
+		return author.findAllByOrderByScoreDesc(criteria);
 		
 	}
 

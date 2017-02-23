@@ -18,10 +18,10 @@ public class Publisher {
 	@Id
 	private ObjectId id;
 	@Field("publisherAbr")
-	@TextIndexed(weight=2)private List<String>publisherAbr;
+	private List<String>publisherAbr;
 	
-	@TextIndexed(weight=5)private String name;
-	@Indexed(unique = true)
+	private String name;
+
 	private String address;
 	
 	@Field("publicationDate")

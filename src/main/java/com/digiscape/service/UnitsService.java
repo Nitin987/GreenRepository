@@ -5,12 +5,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.query.TextCriteria;
+import org.springframework.stereotype.Service;
 
 import com.digiscape.model.Genus;
 import com.digiscape.model.Units;
 import com.digiscape.repository.UnitsRepository;
-
-public class UnitService {
+@Service
+public class UnitsService {
 @Autowired
 UnitsRepository unit;
 Units un=new Units();

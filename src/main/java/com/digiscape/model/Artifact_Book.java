@@ -18,10 +18,7 @@ import lombok.Data;
 public class Artifact_Book {
 	@Id
 	private ObjectId id;
-	
-	@TextIndexed(weight = 5)
 	private String chapterTitle;
-	@TextIndexed(weight = 4)
 	@Field("book-title")
 	private String bookTitle;
 	
@@ -44,7 +41,6 @@ public class Artifact_Book {
 	
 	@Field("pii")
 	private String pii;
-	@TextIndexed(weight = 1)
 	@Field("doi")
 	private String doi;
 	

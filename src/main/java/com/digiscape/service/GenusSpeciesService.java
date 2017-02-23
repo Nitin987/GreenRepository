@@ -23,13 +23,13 @@ public class GenusSpeciesService {
 	Species sp=new Species();
 	Genus gg=new Genus();
 		public Genus getGenusName(String search){
-			return genus.findOne(search);
+			return genus.findByName(search);
 			
 		}
 		
-		public Species getSpeciesname(){
+		public Species getSpeciesname(String search){
 			
-			return species.findByName();
+			return species.findByName(search);
 		}
 		public List<Genus> getAllGenus(){
 			List<Genus> GenusList=new ArrayList<>();
@@ -45,7 +45,7 @@ public class GenusSpeciesService {
 		public List<Genus> getFullTextGenus(String search){
 				TextCriteria criteria=TextCriteria.forDefaultLanguage().matchingAny(search);
 				
-				return genus.findTop5ByScore(criteria);
+				return genus.findAllByOrderByScoreDesc(criteria);
 				
 			}
 			

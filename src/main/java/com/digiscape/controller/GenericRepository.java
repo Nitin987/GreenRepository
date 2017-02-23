@@ -16,18 +16,17 @@ import com.digiscape.model.Organization;
 import com.digiscape.model.Publisher;
 import com.digiscape.model.Species;
 import com.digiscape.model.Units;
+import com.digiscape.repository.GenusRepository;
 import com.digiscape.repository.PublisherRepository;
 import com.digiscape.service.AuthorService;
 import com.digiscape.service.CountryService;
 import com.digiscape.service.GenusSpeciesService;
 import com.digiscape.service.GeolocService;
 import com.digiscape.service.OrganizationService;
-import com.digiscape.service.UnitService;
+import com.digiscape.service.UnitsService;
 
 @RestController
-@ComponentScan("com.digiscape.service")
-
-public class Repository {
+public class GenericRepository {
     @Autowired
 	private AuthorService author;
     @Autowired
@@ -39,10 +38,12 @@ public class Repository {
     @Autowired
 	private GeolocService geo;
     @Autowired
-	private UnitService unit;
+	private UnitsService unit;
     @Autowired
     private PublisherRepository pubRepo;
-     
+     @Autowired
+    public GenusRepository gen;
+		
 	@RequestMapping("/startRepository/{path}")
   public void start( String path){
 	//initializeXml(path);			
@@ -52,8 +53,14 @@ public class Repository {
 		return author.getFullTextOnAuthor(searchText);
 		
 	}
-	@RequestMapping("/Organization/TextSearch/{Name}")
+	@RequestMapping("/GeoraphyPost/TextSearch/{searchText}")
+	public void createGeoloc(@PathVariable String searchText){	
+		geo.createCountryRepo(searchText);
+		System.out.println("Success");
+	}
+	@RequestMapping("/Organization/TextSearch/{searchText}")
 	public List<Organization> getListOrganization(@PathVariable String searchText){	
+	 System.out.println(org.getFullTextOnOrganization(searchText));
 		return org.getFullTextOnOrganization(searchText);
 		
 	}@RequestMapping("/Publisher/{searchText}")
@@ -62,6 +69,7 @@ public class Repository {
 		
 	}@RequestMapping("/Genus/{searchText}")
 	public List<Genus> getGenus(@PathVariable String searchText){	
+		System.out.println(gen.findByName(searchText));
 		return genuspe.getFullTextGenus(searchText);
 		
 	}

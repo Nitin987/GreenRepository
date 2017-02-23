@@ -24,7 +24,7 @@ public class OrganizationService {
 	}
 	public Organization getOrganization(String search){
 		
-		return orgRepo.findOne(search);
+		return orgRepo.findByName(search);
 	}
 	public Organization createOrganization(){
 		
@@ -32,9 +32,9 @@ public class OrganizationService {
 	}
 	
 	public List<Organization> getFullTextOnOrganization(String search){
-		TextCriteria criteria=TextCriteria.forDefaultLanguage().matchingAny(search);
+		TextCriteria criteria=TextCriteria.forDefaultLanguage().matchingPhrase(search);
 		
-		return orgRepo.findTop5ByScore(criteria);
+		return orgRepo.findAllByOrderByScoreDesc(criteria);
 		
 	}
 

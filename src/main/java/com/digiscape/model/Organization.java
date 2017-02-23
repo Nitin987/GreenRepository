@@ -18,7 +18,7 @@ import lombok.Data;
 public class Organization {
 	@Id
 	private ObjectId id;
-	@TextIndexed(weight = 3) private String name;
+	private String name;
 	private List<DivisionName> division_name;
 	private String abbrev_name;
 	private String tel;

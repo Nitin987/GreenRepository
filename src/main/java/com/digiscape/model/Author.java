@@ -8,7 +8,7 @@ import org.springframework.data.mongodb.core.mapping.TextScore;
 
 import lombok.Data;
 
-@Document(collection = "Author")
+@Document(collection = "Authors")
 @Data
 public class Author {
 
@@ -24,7 +24,7 @@ public class Author {
 
 	@Field("given-name")
 	private String given_name;
-	@TextIndexed(weight = 2)
+	
 	@Field("family-name")
 	private String family_name;
 
@@ -33,7 +33,7 @@ public class Author {
 
 	@Field("suffix")
 	private String suffix;
-	@TextIndexed(weight = 4)
+
 	@Field("fullName")
 	private String fullName;
 
