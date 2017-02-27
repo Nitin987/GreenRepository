@@ -40,6 +40,11 @@ public class GeolocService {
 		return geoRepo.findTop5ByScore(criteria);
 		
 	}
+	public List<GeographicalLocation> getCountryname(String search){
+		
+		return geoRepo.findTop5Bycountry(search);
+		
+	}
 	public void createCountryRepo(String path){
 		String csvFile = "C:\\Users\\74461\\Desktop\\USStates.csv";
         String line = "";

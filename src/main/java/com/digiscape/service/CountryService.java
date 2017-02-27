@@ -35,5 +35,10 @@ public Country createGeolocation(){
 			return country.findTop5ByScore(criteria);
 			
 		}
+	public List<Country> getBycountryName(String search){
+		TextCriteria criteria=TextCriteria.forDefaultLanguage().matchingAny(search);
 		
+		return country.findTop5BycountryName(criteria);
+		
+	}
 }

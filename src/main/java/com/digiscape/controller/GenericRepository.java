@@ -16,10 +16,12 @@ import com.digiscape.model.Organization;
 import com.digiscape.model.Publisher;
 import com.digiscape.model.Species;
 import com.digiscape.model.Units;
+import com.digiscape.model.VariationCountry;
 import com.digiscape.repository.GenusRepository;
 import com.digiscape.repository.PublisherRepository;
 import com.digiscape.service.AuthorService;
 import com.digiscape.service.CountryService;
+import com.digiscape.service.CountryWiseService;
 import com.digiscape.service.GenusSpeciesService;
 import com.digiscape.service.GeolocService;
 import com.digiscape.service.OrganizationService;
@@ -39,6 +41,8 @@ public class GenericRepository {
 	private GeolocService geo;
     @Autowired
 	private UnitsService unit;
+    @Autowired
+	private CountryWiseService cvs;
     @Autowired
     private PublisherRepository pubRepo;
      @Autowired
@@ -84,10 +88,30 @@ public class GenericRepository {
 		return geo.getFullTextOnGeolocation(searchText) ;
 		
 	}
+	@RequestMapping("/Location/country/{searchText}")
+	public List<GeographicalLocation> getGeoName(@PathVariable String searchText){	
+		System.out.println(geo.getCountryname(searchText));
+		return geo.getCountryname(searchText);
+		
+	}
 	@RequestMapping("/SIUnits/{searchText}")
 	public List<Units> getUnits(@PathVariable String searchText){	
 		return unit.getFullTextUnits(searchText);
 		
+	}
+@RequestMapping("/FrenchCountry/{searchText}")
+	public List<VariationCountry> getAllCountryVariation(@PathVariable String searchText){	
+		return cvs.getAllCountryname() ;
+		
+	}
+@RequestMapping("/FrenchCountryName/{searchText}")
+public List<VariationCountry> getCountryVariation(@PathVariable String searchText){	
+	return cvs.getCountryname(searchText);
+	
+}
+	@RequestMapping("/FrenchCountry/")
+	public void createReposCountry(){
+		cvs.insert();
 	}
 
 }
