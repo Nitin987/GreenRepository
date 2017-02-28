@@ -32,7 +32,7 @@ public Country createGeolocation(){
 	public List<Country> getFullTextCountry(String search){
 			TextCriteria criteria=TextCriteria.forDefaultLanguage().matchingAny(search);
 			
-			return country.findTop5ByScore(criteria);
+			return country.findTop5ByOrderByScore(criteria);
 			
 		}
 	public List<Country> getBycountryName(String search){

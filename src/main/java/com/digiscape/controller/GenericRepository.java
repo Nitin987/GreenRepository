@@ -11,33 +11,28 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.digiscape.model.Author;
 import com.digiscape.model.Genus;
-import com.digiscape.model.GeographicalLocation;
-import com.digiscape.model.Organization;
+
 import com.digiscape.model.Publisher;
 import com.digiscape.model.Species;
 import com.digiscape.model.Units;
-import com.digiscape.model.VariationCountry;
+
 import com.digiscape.repository.GenusRepository;
 import com.digiscape.repository.PublisherRepository;
 import com.digiscape.service.AuthorService;
-import com.digiscape.service.CountryService;
 import com.digiscape.service.CountryWiseService;
 import com.digiscape.service.GenusSpeciesService;
 import com.digiscape.service.GeolocService;
-import com.digiscape.service.OrganizationService;
 import com.digiscape.service.UnitsService;
 
 @RestController
+@RequestMapping("/Genus")
 public class GenericRepository {
     @Autowired
 	private AuthorService author;
-    @Autowired
-	private OrganizationService org;
+  
     @Autowired
 	private GenusSpeciesService genuspe;
-    @Autowired
-	private CountryService country;
-    @Autowired
+       @Autowired
 	private GeolocService geo;
     @Autowired
 	private UnitsService unit;
@@ -62,12 +57,7 @@ public class GenericRepository {
 		geo.createCountryRepo(searchText);
 		System.out.println("Success");
 	}
-	@RequestMapping("/Organization/TextSearch/{searchText}")
-	public List<Organization> getListOrganization(@PathVariable String searchText){	
-	 System.out.println(org.getFullTextOnOrganization(searchText));
-		return org.getFullTextOnOrganization(searchText);
-		
-	}@RequestMapping("/Publisher/{searchText}")
+	@RequestMapping("/Publisher/{searchText}")
 	public Publisher getPublisher(@PathVariable String searchText){	
 		return pubRepo.findByName(searchText);
 		
@@ -82,33 +72,13 @@ public class GenericRepository {
 		return genuspe.getFullTextSpecies(searchText);
 		
 	}
-		
-	@RequestMapping("/Location/TextSearch/{searchText}")
-	public List<GeographicalLocation> getLocation(@PathVariable String searchText){	
-		return geo.getFullTextOnGeolocation(searchText) ;
-		
-	}
-	@RequestMapping("/Location/country/{searchText}")
-	public List<GeographicalLocation> getGeoName(@PathVariable String searchText){	
-		System.out.println(geo.getCountryname(searchText));
-		return geo.getCountryname(searchText);
-		
-	}
+	
 	@RequestMapping("/SIUnits/{searchText}")
 	public List<Units> getUnits(@PathVariable String searchText){	
 		return unit.getFullTextUnits(searchText);
 		
 	}
-@RequestMapping("/FrenchCountry/{searchText}")
-	public List<VariationCountry> getAllCountryVariation(@PathVariable String searchText){	
-		return cvs.getAllCountryname() ;
-		
-	}
-@RequestMapping("/FrenchCountryName/{searchText}")
-public List<VariationCountry> getCountryVariation(@PathVariable String searchText){	
-	return cvs.getCountryname(searchText);
-	
-}
+
 	@RequestMapping("/FrenchCountry/")
 	public void createReposCountry(){
 		cvs.insert();

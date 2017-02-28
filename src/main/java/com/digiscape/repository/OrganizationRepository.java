@@ -9,6 +9,6 @@ import org.springframework.data.repository.CrudRepository;
 import com.digiscape.model.Organization;
 @ConfigurationProperties(prefix="spring.data_Machine.mongodb.database")
 public interface OrganizationRepository extends CrudRepository<Organization, String>{
-	List<Organization> findAllByOrderByScoreDesc(TextCriteria criteria);
+	List<Organization> findTop5ByOrderByScoreDesc(TextCriteria criteria);
 	Organization findByName(String search);
 }

@@ -32,9 +32,9 @@ public class OrganizationService {
 	}
 	
 	public List<Organization> getFullTextOnOrganization(String search){
-		TextCriteria criteria=TextCriteria.forDefaultLanguage().matchingPhrase(search);
+		TextCriteria criteria=TextCriteria.forDefaultLanguage().matchingAny(search);
 		
-		return orgRepo.findAllByOrderByScoreDesc(criteria);
+		return orgRepo.findTop5ByOrderByScoreDesc(criteria);
 		
 	}
 

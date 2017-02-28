@@ -29,15 +29,21 @@ public class GeolocService {
 		
 		return geoRepo.findOne(search);
 	}
+public List<GeographicalLocation> getState(String search){
+		System.out.println(geoRepo.findByState(search));
+		return geoRepo.findByState(search);
+	}
+
+
 	public GeographicalLocation createGeolocation(){
 		
 		return geoRepo.save(org);
 	}
 	
 	public List<GeographicalLocation> getFullTextOnGeolocation(String search){
-		TextCriteria criteria=TextCriteria.forDefaultLanguage().matchingPhrase(search);
+		TextCriteria criteria=TextCriteria.forDefaultLanguage().matching(search);
 		
-		return geoRepo.findTop5ByScore(criteria);
+		return geoRepo.findTop5ByOrderByScore(criteria);
 		
 	}
 	public List<GeographicalLocation> getCountryname(String search){
