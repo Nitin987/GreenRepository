@@ -31,7 +31,7 @@ public List<Units> getAllUnits(){
 public List<Units> getFullTextUnits(String search){
 	TextCriteria criteria=TextCriteria.forDefaultLanguage().matchingAny(search);
 	
-	return unit.findTop5ByScore(criteria);
+	return unit.findTop5ByOrderByScore(criteria);
 	
 }
 

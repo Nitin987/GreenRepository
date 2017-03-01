@@ -43,7 +43,7 @@ public class GenusSpeciesService {
 			return genus.save(gg);
 		}
 		public List<Genus> getFullTextGenus(String search){
-				TextCriteria criteria=TextCriteria.forDefaultLanguage().matchingAny(search);
+				TextCriteria criteria=TextCriteria.forDefaultLanguage().matchingPhrase(search);
 				
 				return genus.findAllByOrderByScoreDesc(criteria);
 				

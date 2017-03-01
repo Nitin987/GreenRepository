@@ -10,6 +10,6 @@ import com.digiscape.model.GeographicalLocation;
 
 public interface GeolocationRepository extends CrudRepository<GeographicalLocation, String> {
 	List <GeographicalLocation>findTop5ByOrderByScore(TextCriteria criteria);
-	List<GeographicalLocation> findByCountry(String Search);
+	List<GeographicalLocation> findTop5ByOrderByCountry(String Search);
 	List<GeographicalLocation> findByState(String Search);
 	List <GeographicalLocation>findTop5Bycountry(String search);}

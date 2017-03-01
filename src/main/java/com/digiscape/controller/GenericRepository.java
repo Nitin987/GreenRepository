@@ -4,40 +4,38 @@ package com.digiscape.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.digiscape.model.Author;
 import com.digiscape.model.Genus;
-
+import com.digiscape.model.Organization;
 import com.digiscape.model.Publisher;
 import com.digiscape.model.Species;
 import com.digiscape.model.Units;
-
 import com.digiscape.repository.GenusRepository;
 import com.digiscape.repository.PublisherRepository;
 import com.digiscape.service.AuthorService;
-import com.digiscape.service.CountryWiseService;
 import com.digiscape.service.GenusSpeciesService;
 import com.digiscape.service.GeolocService;
+import com.digiscape.service.OrganizationService;
 import com.digiscape.service.UnitsService;
 
 @RestController
-@RequestMapping("/Genus")
+@RequestMapping("/GenusSpeUnit")
 public class GenericRepository {
     @Autowired
 	private AuthorService author;
-  
+   @Autowired 
+    private OrganizationService org;
     @Autowired
 	private GenusSpeciesService genuspe;
        @Autowired
 	private GeolocService geo;
     @Autowired
 	private UnitsService unit;
-    @Autowired
-	private CountryWiseService cvs;
+
     @Autowired
     private PublisherRepository pubRepo;
      @Autowired
@@ -47,7 +45,7 @@ public class GenericRepository {
   public void start( String path){
 	//initializeXml(path);			
 	}	
-	@RequestMapping("/Author/TextSearch/{searchText}")
+	@RequestMapping("/Author/{searchText}")
 	public List<Author> getListAuthor(@PathVariable String searchText){	
 		return author.getFullTextOnAuthor(searchText);
 		
@@ -67,6 +65,7 @@ public class GenericRepository {
 		return genuspe.getFullTextGenus(searchText);
 		
 	}
+	
 	@RequestMapping("/Species/{searchText}")
 	public List<Species> getSpecies(@PathVariable String searchText){	
 		return genuspe.getFullTextSpecies(searchText);
@@ -79,9 +78,6 @@ public class GenericRepository {
 		
 	}
 
-	@RequestMapping("/FrenchCountry/")
-	public void createReposCountry(){
-		cvs.insert();
-	}
+	
 
 }

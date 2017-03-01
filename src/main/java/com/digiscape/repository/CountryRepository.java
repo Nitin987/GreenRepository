@@ -11,5 +11,5 @@ import com.digiscape.model.Country;
 @ConfigurationProperties(prefix="spring.data_Machine.mongodb.database")
 public interface CountryRepository extends CrudRepository<Country, String>{
 	List <Country>findTop5ByOrderByScore(TextCriteria criteria);
-	List<Country>findTop5BycountryName(TextCriteria criteria);
+	List<Country>findTop5BycountryName(String criteria);
 }

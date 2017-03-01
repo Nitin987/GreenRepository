@@ -9,5 +9,5 @@ import com.digiscape.model.Artifact_Book;
 
 
 public interface ArtifactBookRepositroy extends CrudRepository<Artifact_Book, String>{
-	List <Artifact_Book>findTop5ByScore(TextCriteria criteria);
+	List <Artifact_Book>findTop5ByOrderByScore(TextCriteria criteria);
 }

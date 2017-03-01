@@ -9,5 +9,5 @@ import com.digiscape.model.Artifact;
 import com.digiscape.model.Country;
 
 public interface ArtifactRepository extends CrudRepository<Artifact, String>{
-	List <Artifact>findTop5ByScore(TextCriteria criteria);
+	List <Artifact>findTop5ByOrderByScore(TextCriteria criteria);
 }
