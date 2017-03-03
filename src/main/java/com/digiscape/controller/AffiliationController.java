@@ -3,6 +3,7 @@ package com.digiscape.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,6 +17,7 @@ import com.digiscape.service.GeolocService;
 import com.digiscape.service.OrganizationService;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:9000")
 @RequestMapping("/Affiliation")
 public class AffiliationController {
 	@Autowired
@@ -24,7 +26,7 @@ public class AffiliationController {
 	private GeolocService geo;
 	@Autowired
 	private CountryService cs;
-	
+	 
 	@RequestMapping("/FullTextOrganization/{searchText}")
 	public List<Organization> getFullTextOrganization(@PathVariable String searchText){
 		
